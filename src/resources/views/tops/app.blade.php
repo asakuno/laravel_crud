@@ -41,6 +41,16 @@
     <div class="flex grow">
         @yield('content')
     </div>
+    <div class="btm-nav">
+        <a href="{{ url('/') }}" class="bg-orange-200 hover:bg-orange-300">
+            <i class="fa-solid fa-house" style="color: #000000;"></i>
+            <span class="btm-nav-label">ホーム</span>
+        </a>
+        <a href="{{ url('login') }}" class="bg-orange-200 hover:bg-orange-300">
+            <i class="fa-solid fa-right-to-bracket" style="color: #050505;"></i>
+            <span class="btm-nav-label">ログイン</span>
+        </a>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
