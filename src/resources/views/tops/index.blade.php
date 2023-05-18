@@ -1,4 +1,4 @@
-@extends('app')
+@extends('tops.app')
 
 @section('content')
     <section class="min-h-96 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg py-16 md:py-20 xl:py-48">

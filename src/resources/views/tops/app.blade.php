@@ -13,18 +13,21 @@
                 Meiryo,
                 sans-serif;
                 background-image: url(/images/book_image.jpeg);
-                background-size: 100% auto;
+                background-size: 100% 100%;
             }
         </style>
         <title>book_shop</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-    <div class=" bg-gray-100 py-4 sm:pt-0">
+    <div class="bg-gray-100 py-2 sm:pt-0 flex justify-between">
+        <div class="text-left px-6 py-2 sm:block w-1/2">
+            <a href="{{ url('/') }}" class="text-2xl hover:text-orange-400 text-orange-800 font-bold">📚みんなの本屋さん📚</a>
+        </div>
         @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <div class="text-right px-6 py-2">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                    @include('layouts.navigation')
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -36,7 +39,7 @@
         @endif
     </div>
     <div class="flex grow">
-      @yield('content')
+        @yield('content')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
