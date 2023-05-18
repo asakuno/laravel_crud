@@ -38,7 +38,7 @@
             </div>
         @endif
     </div>
-    <div class="flex grow">
+    <div>
         @yield('content')
     </div>
     @guest
