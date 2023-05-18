@@ -20,7 +20,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-    <div class="bg-gray-100 py-2 sm:pt-0 flex justify-between">
+    <div class="bg-orange-200 py-2 sm:pt-0 flex justify-between">
         <div class="text-left px-6 py-2 sm:block w-1/2">
             <a href="{{ url('/') }}" class="text-2xl hover:text-orange-400 text-orange-800 font-bold">📚みんなの本屋さん📚</a>
         </div>
@@ -41,16 +41,9 @@
     <div class="flex grow">
         @yield('content')
     </div>
-    <div class="btm-nav">
-        <a href="{{ url('/') }}" class="bg-orange-200 hover:bg-orange-300">
-            <i class="fa-solid fa-house" style="color: #000000;"></i>
-            <span class="btm-nav-label">ホーム</span>
-        </a>
-        <a href="{{ url('login') }}" class="bg-orange-200 hover:bg-orange-300">
-            <i class="fa-solid fa-right-to-bracket" style="color: #050505;"></i>
-            <span class="btm-nav-label">ログイン</span>
-        </a>
-    </div>
+    @guest
+        @include('layouts.before_btm_nav')
+    @endguest
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
