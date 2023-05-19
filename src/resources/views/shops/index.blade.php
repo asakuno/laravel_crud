@@ -1,4 +1,4 @@
-@extends('tops.app')
+@extends('shops.app')
 
 @section('content')
 <div class="flex grow">
@@ -11,7 +11,7 @@
                 あなたのおすすめの書店を紹介してみませんか？
             </h1>
             <div class="flex justify-center">
-                <a href="{{ route('shops.index') }}" class="btn btn-primary">試しに使ってみる</a>
+                <button class="btn btn-primary">試しに使ってみる</button>
             </div>
         </div>
     </section>
