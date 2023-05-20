@@ -38,8 +38,13 @@
     </div>
     <div class="min-h-screen">
         @yield('content')
+        <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async defer></script>
     </div>
-    @include('layouts.before_btm_nav')
+    @auth
+        @include('layouts.btm_nav')  
+    @else      
+        @include('layouts.before_btm_nav')
+    @endauth
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
