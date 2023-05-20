@@ -15,7 +15,7 @@ class ShopController extends Controller
     public function index()
     {
         $shops = Shop::latest()->paginate(5);
-        
+
         return view('shops.index', compact('shops'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -27,7 +27,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        //
+        return view('shops.create');
     }
 
     /**
