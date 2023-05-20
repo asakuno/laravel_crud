@@ -11,7 +11,7 @@
                 あなたのおすすめの書店を紹介してみませんか？
             </h1>
             <div class="flex justify-center">
-                <a href="{{ route('shops.index') }}" class="btn btn-primary">試しに使ってみる</a>
+                <a href="{{ route('shops.index') }}" class="btn btn-primary">みんなのおすすめの書店を見てみる</a>
             </div>
         </div>
     </section>
