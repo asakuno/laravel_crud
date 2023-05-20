@@ -32,5 +32,7 @@ Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
 Route::middleware('auth')->group(function () {
     Route::get('shops/create', [ShopController::class, 'create'])->name('shop.create');
     Route::post('shops/store', [ShopController::class, 'store'])->name('shop.store');
+    Route::get('/shops/edit/{shop}', [ShopController::class, 'edit'])->name('shop.edit');
+    Route::put('/shops/update/{shop}', [ShopController::class, 'update'])->name('shop.update');
 });
 require __DIR__.'/auth.php';
