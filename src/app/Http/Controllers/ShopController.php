@@ -79,8 +79,11 @@ class ShopController extends Controller
      * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shop $shop)
+    public function edit(Shop $shop, ShopService $shopService)
     {
+        if (!$shopService->checkOwnShop(Auth::user()->id, $shop->id)) {
+            throw new AccessDeniedHttpException();
+        }
         return view('shops.edit', compact('shop'));
     }
 
