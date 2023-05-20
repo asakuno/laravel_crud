@@ -125,8 +125,15 @@ class ShopController extends Controller
      * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shop $shop)
+    public function destroy(Request $request, ShopService $shopService)
     {
-        //
+        $shop = Shop::find($request->route('shop'));
+        if (!$shopService->checkOwnShop($request->user()->id, $shop->id)) {
+            throw new AccessDeniedHttpException();
+        }
+        $shop->delete();
+        return redirect()
+                ->route('shops.index')
+                ->with('success', $shop->name.'を削除しました');
     }
 }
