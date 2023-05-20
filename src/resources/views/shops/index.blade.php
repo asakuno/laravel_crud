@@ -19,9 +19,11 @@
                     <td style="text-align:right">{{ $shop->address }}</td>
                     <td style="text-align:right">{{ $shop->latitude }}</td>
                     <td style="text-align:left">{{ $shop->longitude }}</td>
-                    <td style="text-align:center">
-                        <a class="btn btn-primary" href="{{ route('shop.edit', $shop->id) }}">編集</a>
-                    </td>
+                    @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
+                        <td style="text-align:center">
+                            <a class="btn btn-primary" href="{{ route('shop.edit', $shop->id) }}">編集</a>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </table>
