@@ -12,8 +12,6 @@
                 "Hiragio Sans",
                 Meiryo,
                 sans-serif;
-                background-image: url(/images/book_image.jpeg);
-                background-size: 100% 100%;
             }
         </style>
         <title>book_shop</title>
@@ -38,12 +36,10 @@
             </div>
         @endif
     </div>
-    <div>
+    <div class="min-h-screen">
         @yield('content')
     </div>
-    @guest
-        @include('layouts.before_btm_nav')
-    @endguest
+    @include('layouts.before_btm_nav')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -17,7 +17,6 @@
     <body>
         <div class="min-h-screen bg-gray-100">
             <!-- layout/navigation.blade.phpを挿入 -->
-            @include('layouts.navigation')
 
             <!-- Page Heading -->
             @if (isset($header))
