@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Services\ShopService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class ShopController extends Controller
 {
@@ -89,7 +91,7 @@ class ShopController extends Controller
      * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shop $shop)
+    public function update(Request $request, ShopService $shopService)
     {
         $request->validate([
             'name' => 'required|max:20',
@@ -98,6 +100,10 @@ class ShopController extends Controller
             'longitude' => 'required|numeric'
         ]);
 
+        $shop = Shop::find($request->route('shop'));
+        if (!$shopService->checkOwnShop($request->user()->id, $shop->id)) {
+            throw new AccessDeniedHttpException();
+        }
         $shop->user_id = Auth::id();
         $shop->name = $request->input('name');
         $shop->address = $request->input('address');
@@ -107,7 +113,7 @@ class ShopController extends Controller
         $shop->save();
 
         return redirect()->route('shops.index')
-            ->with('success', $shop->name.'を作成しました');
+            ->with('success', $shop->name.'を編集しました');
     }
 
     /**
