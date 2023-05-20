@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="mx-5 my-5 bg-white" style="overflow-x: auto;">
+    <a href="{{ route('shop.create') }}" class="btn btn-outline btn-success mb-3">書店登録</a>
         <table class="table table-bordered table-responsive">
             <tr>
                 <th>No</th>
