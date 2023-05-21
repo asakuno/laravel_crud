@@ -17,9 +17,17 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops = Shop::latest()->paginate(5);
+        $keyword = request()->input('keyword');
+        $query = Shop::query();
 
-        return view('shops.index', compact('shops'))
+        if(!empty($keyword)){
+            $query->where('name', 'LIKE', "%{$keyword}%")
+                ->orWhere('address', 'LIKE', "%{$keyword}%");
+        }
+        
+        $shops = $query->paginate(5);
+
+        return view('shops.index', compact('shops', 'keyword'))
             ->with('page_id',request()->page)
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
