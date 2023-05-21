@@ -18,7 +18,11 @@
             @foreach ($shops as $shop)
                 <tr>
                     <td style="text-align:right">{{ $shop->user->name }}</td>
-                    <td style="text-align:left">{{ $shop->name }}</td>
+                    <td style="text-align:left">
+                        <a  href="{{ route('shop.show', $shop->id) }}?page_id={{ $page_id }}">
+                            {{ $shop->name }}
+                        </a>
+                    </td>
                     <td style="text-align:right">{{ $shop->address }}</td>
                     <td style="text-align:right">{{ $shop->latitude }}</td>
                     <td style="text-align:left">{{ $shop->longitude }}</td>
