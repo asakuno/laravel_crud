@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
+Route::get('/shops/{shop}', [ShopController::class, 'show'])->name('shop.show');
 Route::middleware('auth')->group(function () {
     Route::get('shops/create', [ShopController::class, 'create'])->name('shop.create');
     Route::post('shops/store', [ShopController::class, 'store'])->name('shop.store');
