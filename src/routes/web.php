@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
+Route::get('/shops/map', [ShopController::class, 'map'])->name('shops.map');
 Route::get('/shops/{shop}', [ShopController::class, 'show'])->name('shop.show')->where('shop', '[0-9]+');
 Route::middleware('auth')->group(function () {
     Route::get('/shops/create', [ShopController::class, 'create'])->name('shop.create');

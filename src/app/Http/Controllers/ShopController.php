@@ -146,4 +146,10 @@ class ShopController extends Controller
                 ->route('shops.index')
                 ->with('success', $shop->name.'を削除しました');
     }
+
+    public function map()
+    {
+        $shops = Shop::all();
+        return view('shops.map', compact('shops'));
+    }
 }
