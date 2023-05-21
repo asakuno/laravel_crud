@@ -25,7 +25,7 @@ class ShopController extends Controller
                 ->orWhere('address', 'LIKE', "%{$keyword}%");
         }
         
-        $shops = $query->paginate(5);
+        $shops = $query->orderBy('created_at', 'DESC')->paginate(5);
 
         return view('shops.index', compact('shops', 'keyword'))
             ->with('page_id',request()->page)
@@ -145,5 +145,11 @@ class ShopController extends Controller
         return redirect()
                 ->route('shops.index')
                 ->with('success', $shop->name.'を削除しました');
+    }
+
+    public function map()
+    {
+        $shops = Shop::all();
+        return view('shops.map', compact('shops'));
     }
 }
