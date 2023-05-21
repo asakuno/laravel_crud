@@ -13,6 +13,7 @@
         @auth
             <a href="{{ route('shop.create') }}" class="btn btn-outline btn-success mb-3">書店登録</a>
         @endauth
+            <a href="{{ route('shops.map') }}" class="btn btn-outline btn-success mb-3">MAP一覧</a>
         <table class="table table-bordered table-responsive">
             <tr>
                 <th>作成者</th>
