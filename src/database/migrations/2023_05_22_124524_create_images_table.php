@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('shops', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('id');
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('image_path');
+            $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -27,7 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('shops', function (Blueprint $table) {
-        });
+        Schema::dropIfExists('images');
     }
 };
