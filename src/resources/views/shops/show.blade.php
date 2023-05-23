@@ -39,7 +39,7 @@
                                 <input type="file" name="image" class="file-input file-input-bordered file-input-success w-full max-w-xs"></br>
                             </div>
                             <div class="flex justify-center mt-2">
-                                <button type="submit" class="btn btn-success">Upload</button>
+                                <button type="submit" class="btn btn-outline btn-success">アップロード</button>
                             </div>
                         </form>
                     </div>
