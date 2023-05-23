@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="max-w-md mx-auto mt-10">
-        <a class="btn btn-success" href="{{ url('/shops') }}?page={{ $page_id }}">戻る</a>
+        <a class="btn btn-outline mb-2" href="{{ url('/shops') }}?page={{ $page_id }}">戻る</a>
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="text-align-right">
                 <div class="row">

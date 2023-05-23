@@ -37,7 +37,7 @@
                     <td style="text-align:left">{{ $shop->longitude }}</td>
                     @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
                         <td style="text-align:center">
-                            <a class="btn btn-primary" href="{{ route('shop.edit', $shop->id) }}">編集</a>
+                            <a class="btn btn-primary" href="{{ route('shop.edit', $shop->id) }}?page_id={{ $page_id }}">編集</a>
                         </td>
                         <td style="text-align:center">
                             <form action="{{ route('shop.destroy', $shop->id) }}" method="POST">
