@@ -32,16 +32,20 @@
                         @else
                             <img src="{{ url('/images/no_image.jpg') }}">
                         @endif
-                        <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="flex justify-center mt-4">
-                                <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                                <input type="file" name="image" class="file-input file-input-bordered file-input-success w-full max-w-xs"></br>
-                            </div>
-                            <div class="flex justify-center mt-2">
-                                <button type="submit" class="btn btn-outline btn-success">アップロード</button>
-                            </div>
-                        </form>
+                        @auth
+                            @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
+                                <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="flex justify-center mt-4">
+                                        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                                        <input type="file" name="image" class="file-input file-input-bordered file-input-success w-full max-w-xs"></br>
+                                    </div>
+                                    <div class="flex justify-center mt-2">
+                                        <button type="submit" class="btn btn-outline btn-success">アップロード</button>
+                                    </div>
+                                </form>
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>
