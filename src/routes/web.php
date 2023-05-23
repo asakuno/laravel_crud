@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ImageUploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,5 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/shops/edit/{shop}', [ShopController::class, 'edit'])->name('shop.edit');
     Route::put('/shops/update/{shop}', [ShopController::class, 'update'])->name('shop.update');
     Route::delete('/shops/{shop}', [ShopController::class, 'destroy'])->name('shop.destroy');
+});
+Route::middleware('auth')->group(function () {
+    Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
 });
 require __DIR__.'/auth.php';

@@ -26,6 +26,23 @@
                         </div>
                         <div id="map" style="height: 300px; width: 380px;"></div>
                     </div>
+                    <div class="col-12 mt-2 mb-2 pb-2 border-b-2 border-gray-200">
+                        @if ($shop->image && $shop->image->image_path)
+                            <img src="{{ url($shop->image->image_path) }}">
+                        @else
+                            <img src="{{ url('/images/no_image.jpg') }}">
+                        @endif
+                        <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="flex justify-center mt-4">
+                                <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                                <input type="file" name="image" class="file-input file-input-bordered file-input-success w-full max-w-xs"></br>
+                            </div>
+                            <div class="flex justify-center mt-2">
+                                <button type="submit" class="btn btn-success">Upload</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
