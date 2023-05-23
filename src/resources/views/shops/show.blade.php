@@ -26,6 +26,20 @@
                         </div>
                         <div id="map" style="height: 300px; width: 380px;"></div>
                     </div>
+                    @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
+                        <div class="flex justify-center mt-2 mb-2 pb-3 border-b-2 border-gray-200">
+                            <td style="text-align:center">
+                                <a class="btn btn-primary mr-4" href="{{ route('shop.edit', $shop->id) }}">編集</a>
+                            </td>
+                            <td style="text-align:center">
+                                <form action="{{ route('shop.destroy', $shop->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-error ml-4" onclick='return confirm("削除してもよろしいですか？")'>削除</button>
+                                </form>
+                            </td>
+                        </div>
+                    @endif
                     <div class="col-12 mt-2 mb-2 pb-2 border-b-2 border-gray-200">
                         @if ($shop->image && $shop->image->image_path)
                             <img src="{{ url($shop->image->image_path) }}">
