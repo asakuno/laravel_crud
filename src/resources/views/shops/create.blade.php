@@ -57,7 +57,7 @@
 </div>
 <script>
 function ChangeAddress() {
-    // geocoderをを利用して位置情報を取得
+    // geocoderを利用して位置情報を取得
     var geocoder = new google.maps.Geocoder();
     var address = document.getElementById("address").value;
 
@@ -70,7 +70,7 @@ function ChangeAddress() {
             document.getElementById("latitude").value = latitude;
             document.getElementById("longitude").value = longitude;
         } else {
-            console.log('存在しない住所です ' + status); // 住所が存在しない場合
+            alert('存在しない住所です ' + status); // 住所が存在しない場合
         }
     });
 }

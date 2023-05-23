@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="light">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +37,13 @@
         @endif
     </div>
     <div class="min-h-screen">
+        <div class="row">
+            <div class="col-md-12">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success mt-1"><p>{{ $message }}</p></div>
+                @endif
+            </div>
+        </div>
         @yield('content')
         <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async defer></script>
     </div>
