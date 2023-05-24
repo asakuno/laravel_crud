@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="max-w-md mx-auto mt-10">
+        <a class="btn btn-outline mb-2" href="{{ url('/shops') }}?page={{ $page_id }}">戻る</a>
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <h1 class="text-3xl font-bold underline">書店編集</h1>
@@ -36,9 +37,9 @@
                         <div class="col-12 mt-2 mb-2">
                             <div class="form-group">
                                 <label for="description">詳細</label>
-                                <textarea value="{{ $shop->description }}" class="form-control" name="description" id="description" rows="3" placeholder="詳細"></textarea>
+                                <textarea class="form-control" name="description" id="description" rows="3" placeholder="詳細">{{ $shop->description }}</textarea>
                                 @error('description')
-                                <span style="color:red;">詳細を140文字以内で入力してください</span>
+                                    <span style="color:red;">詳細を140文字以内で入力してください</span>
                                 @enderror
                             </div>
                         </div>

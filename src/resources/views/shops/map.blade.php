@@ -1,15 +1,19 @@
 @extends('shops.app')
 
 @section('content')
-    <div class="my-5">
-        <div class="flex justify-center mb-">
-            <div class="flex border rounded border-gray-200">
-                <input type="text" id="keyword" class="input input-bordered bg-gray-100" placeholder="地名で検索" />
-                <button id="search" class="btn btn-outline btn-secondary" >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                </button>
-            </div>
+    <div class="mt-5">
+        <div class="flex justify-center">
+            <input type="text" id="keyword" class="input input-bordered bg-gray-100" placeholder="地名で検索" />
+            <button id="search" class="btn btn-outline btn-secondary" >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </button>
         </div>
+    </div>
+    <div class="mx-5 mt-3 flex justify-center" style="overflow-x: auto;">
+      <a href="{{ route('shops.index') }}" class="btn btn-outline btn-info mb-3 mr-4">書店一覧</a>
+      @auth
+          <a href="{{ route('shop.create') }}" class="btn btn-outline btn-success mb-3">書店登録</a>
+      @endauth
     </div>
     <div class="inset-0 flex items-center justify-center">
         <div id="map" style="height: 500px; width: 500px;"></div>

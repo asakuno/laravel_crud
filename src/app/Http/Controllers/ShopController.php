@@ -53,6 +53,7 @@ class ShopController extends Controller
         $request->validate([
             'name' => 'required|max:20',
             'address' => 'required|max:50',
+            'description' => 'max:140',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric'
         ]);
@@ -94,7 +95,8 @@ class ShopController extends Controller
         if (!$shopService->checkOwnShop(Auth::user()->id, $shop->id)) {
             throw new AccessDeniedHttpException();
         }
-        return view('shops.edit', compact('shop'));
+        return view('shops.edit', compact('shop'))
+            ->with('page_id',request()->page_id);
     }
 
     /**
@@ -109,6 +111,7 @@ class ShopController extends Controller
         $request->validate([
             'name' => 'required|max:20',
             'address' => 'required|max:50',
+            'description' => 'max:140',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric'
         ]);
@@ -149,7 +152,7 @@ class ShopController extends Controller
 
     public function map()
     {
-        $shops = Shop::all();
+        $shops = Shop::with('user')->get();
         return view('shops.map', compact('shops'));
     }
 }

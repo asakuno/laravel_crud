@@ -39,7 +39,6 @@ class ImageUploadController extends Controller
         $path = Storage::disk('s3')->put('images', $request->file('image'));
         $imagePath = Storage::disk('s3')->url($path);
 
-        // 以下のコードで画像のパスをデータベースに保存します
         $image = new Image;
         $image->image_path = $imagePath;
         $image->shop_id = $request->input('shop_id');
