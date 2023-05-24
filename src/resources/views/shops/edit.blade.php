@@ -39,7 +39,7 @@
                                 <label for="description">詳細</label>
                                 <textarea class="form-control" name="description" id="description" rows="3" placeholder="詳細">{{ $shop->description }}</textarea>
                                 @error('description')
-                                <span style="color:red;">詳細を140文字以内で入力してください</span>
+                                    <span style="color:red;">詳細を140文字以内で入力してください</span>
                                 @enderror
                             </div>
                         </div>

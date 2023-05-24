@@ -16,43 +16,32 @@
                 <a href="{{ route('shop.create') }}" class="btn btn-outline btn-success mb-3">書店登録</a>
             @endauth
         </div>
-        <table class="table table-bordered table-responsive">
-            <tr>
-                <th>作成者</th>
-                <th>書店名</th>
-                <th>住所</th>
-                <th>緯度</th>
-                <th>経度</th>
-                <th></th>
-                <th></th>
-            </tr>
-            @foreach ($shops as $shop)
-                <tr>
-                    <td style="text-align:right">{{ $shop->user->name }}</td>
-                    <td style="text-align:left">
-                        <a  href="{{ route('shop.show', $shop->id) }}?page_id={{ $page_id }}">
+        @foreach ($shops as $shop)
+        <div class="flex justify-center">
+            <div class="card w-96 bg-base-100 shadow-xl mb-3">
+                <div class="card-body">
+                    <h2 class="card-title font-bold">
+                        <a href="{{ route('shop.show', $shop->id) }}?page_id={{ $page_id }}">
                             {{ $shop->name }}
                         </a>
-                    </td>
-                    <td style="text-align:right">{{ $shop->address }}</td>
-                    <td style="text-align:right">{{ $shop->latitude }}</td>
-                    <td style="text-align:left">{{ $shop->longitude }}</td>
-                    @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
-                        <td style="text-align:center">
-                            <a class="btn btn-primary" href="{{ route('shop.edit', $shop->id) }}?page_id={{ $page_id }}">編集</a>
-                        </td>
-                        <td style="text-align:center">
+                    </h2>
+                    <p class="mb-2">{{ $shop->address }}</p>
+                    <p class="font-medium italic">{{ $shop->user->name }}</p>
+                    <div class="card-actions justify-end">
+                        @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
+                            <a class="btn btn-outline btn-primary" href="{{ route('shop.edit', $shop->id) }}?page_id={{ $page_id }}">編集</a>
                             <form action="{{ route('shop.destroy', $shop->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-error" onclick='return confirm("削除してもよろしいですか？")'>削除</button>
+                                <button class="btn btn-outline btn-error" onclick='return confirm("削除してもよろしいですか？")'>削除</button>
                             </form>
-                        </td>
-                    @endif
-                </tr>
-            @endforeach
-        </table>
-        <div class="flex justify-center">
+                        @endif
+                    </div>
+                </div>
+            </div> 
+        </div>       
+        @endforeach 
+        <div class="flex justify-center mb-8">
             {!! $shops->links('pagination::bootstrap-4') !!}
         </div>
     </div>
