@@ -12,9 +12,9 @@ PHP/Laravelで下記の要件を満たしたオリジナルサイトを作成し
 - [x] 認証機能
 - [x] CRUD処理
 - [x] 検索機能
-- [ ] フロントエンド
-- [ ] -デザインを整える（Bootstrap,TailWindCSSなど可）
-- [ ] -bladeを利用 or NuxtやNextを利用 どちらでも可
+- [x] フロントエンド
+- [x] -デザインを整える（Bootstrap,TailWindCSSなど可）
+- [x] -bladeを利用 or NuxtやNextを利用 どちらでも可
 
 ## 要件2. 下記のうちどれか1つを選択
 - [x] 1. AWSを使用した本番公開
