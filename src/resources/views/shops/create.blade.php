@@ -17,7 +17,7 @@
                             <label for="name">書店名</label>
                             <input type="text" class="form-control" name="name" id="name" placeholder="書店名を入力してください" value="{{ old('name') }}">
                             @error('name')
-                                <span style="color:red;">書店名を20文字以内で入力してください</span>
+                                <span style="color:red;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                             <label for="address">住所</label>
                             <input type="text" class="form-control" name="address" id="address" placeholder="住所を入力してください" value="{{ old('address') }}">
                             @error('address')
-                                <span style="color:red;">住所を入力してください</span>
+                                <span style="color:red;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <label for="description">詳細</label>
                             <textarea class="form-control" name="description" id="description" rows="3" placeholder="詳細を140文字以内で入力してください">{{ old('description') }}</textarea>
                             @error('description')
-                            <span style="color:red;">詳細を140文字以内で入力してください</span>
+                                <span style="color:red;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
