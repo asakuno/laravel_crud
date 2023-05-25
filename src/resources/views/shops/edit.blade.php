@@ -16,7 +16,7 @@
                         <div class="col-12 mt-2 mb-2">
                             <div class="form-group">
                                 <label for="name">書店名</label>
-                                <input type="text" value="{{ $shop->name }}" class="form-control" name="name" id="name" placeholder="書店名を入力してください">
+                                <input type="text" value="{{ old('name', $shop->name) }}" class="form-control" name="name" id="name" placeholder="書店名を入力してください">
                                 @error('name')
                                     <span style="color:red;">書店名を20文字以内で入力してください</span>
                                 @enderror
@@ -37,7 +37,7 @@
                         <div class="col-12 mt-2 mb-2">
                             <div class="form-group">
                                 <label for="description">詳細</label>
-                                <textarea class="form-control" name="description" id="description" rows="3" placeholder="詳細">{{ $shop->description }}</textarea>
+                                <textarea class="form-control" name="description" id="description" rows="3" placeholder="詳細">{{ old('description', $shop->description) }}</textarea>
                                 @error('description')
                                     <span style="color:red;">詳細を140文字以内で入力してください</span>
                                 @enderror
@@ -72,7 +72,7 @@ function ChangeAddress() {
             document.getElementById("latitude").value = latitude;
             document.getElementById("longitude").value = longitude;
         } else {
-            console.log('存在しない住所です ' + status); // 住所が存在しない場合
+            alert('存在しない住所です ' + status); // 住所が存在しない場合
         }
     });
 }
