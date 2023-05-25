@@ -40,7 +40,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if ($message = Session::get('success'))
-                    <div class="alert alert-success mt-1"><p>{{ $message }}</p></div>
+                    <div class="alert alert-success shadow-lg mt-1" id="success-alert">
+                        <p>{{ $message }}</p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
                 @endif
             </div>
         </div>
@@ -53,5 +58,19 @@
         @include('layouts.before_btm_nav')
     @endauth
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var closeButton = document.querySelector('#success-alert .close');
+            console.log('aaa');
+            if (closeButton) {
+                closeButton.addEventListener('click', function() {
+                    var successAlert = document.querySelector('#success-alert');
+                    if (successAlert) {
+                        successAlert.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
     </body>
 </html>
