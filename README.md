@@ -21,7 +21,7 @@ PHP/Laravelで下記の要件を満たしたオリジナルサイトを作成し
 
 ## 要件2. 下記のうちどれか1つを選択
 - [x] 1. AWSを使用した本番公開
-- [x] 2.外部APIを利用した機能
+- [x] 2. 外部APIを利用した機能
 - [x] 3. Dockerでの環境構築
   ※ Laravel-sail機能を用いず、自身で docker-compose.yml を作成しコンテナを構築すること
   （docker-compose.ymlをGitHubにあげること）

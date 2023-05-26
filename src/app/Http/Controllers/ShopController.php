@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Services\ShopService;
 use Illuminate\Http\Request;
+use App\Http\Requests\ShopRequest;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -48,16 +49,8 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ShopRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:20',
-            'address' => 'required|max:50',
-            'description' => 'max:140',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric'
-        ]);
-
         $shop = new Shop;
         $shop->user_id = Auth::id();
         $shop->name = $request->input('name');
@@ -106,20 +99,13 @@ class ShopController extends Controller
      * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ShopService $shopService)
+    public function update(ShopRequest $request, ShopService $shopService)
     {
-        $request->validate([
-            'name' => 'required|max:20',
-            'address' => 'required|max:50',
-            'description' => 'max:140',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric'
-        ]);
-
         $shop = Shop::find($request->route('shop'));
         if (!$shopService->checkOwnShop($request->user()->id, $shop->id)) {
             throw new AccessDeniedHttpException();
         }
+
         $shop->user_id = Auth::id();
         $shop->name = $request->input('name');
         $shop->address = $request->input('address');
