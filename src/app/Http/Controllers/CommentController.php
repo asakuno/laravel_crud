@@ -7,15 +7,13 @@ use App\Models\Shop;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Services\CommentService;
+use App\Http\Requests\CommentRequest;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {    
-        $request->validate([
-            'comment' => 'required|max:140',
-        ]);
         $comment = new Comment();
         $comment->comment = $request->comment;
         $comment->shop_id = $request->shop_id;
@@ -29,10 +27,11 @@ class CommentController extends Controller
     public function destroy(Request $request, CommentService $CommentService)
     {
         $comment = Comment::find($request->comment_id);
-        
+
         if (!$CommentService->checkOwnComment(Auth::user()->id, $comment->id)) {
             throw new AccessDeniedHttpException();
         }
+
         $comment->delete();
         return back()
             ->with('success', 'コメント削除に成功しました');
