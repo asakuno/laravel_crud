@@ -71,12 +71,14 @@
                                 @foreach($shop->comments as $comment)
                                     <div class="mb-2 border-2 border-gray-200">
                                         <span>{{ $comment->comment }}</span>
-                                        <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="comment_id" value="{{ $comment->id }}">
-                                            <button class="btn btn-outline btn-error" onclick='return confirm("削除してもよろしいですか？")'>削除</button>
-                                        </form>
+                                        @if(\Illuminate\Support\Facades\Auth::id() === $comment->user_id)
+                                            <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                                <button class="btn btn-outline btn-error" onclick='return confirm("削除してもよろしいですか？")'>削除</button>
+                                            </form>
+                                        @endif
                                     </div>
                                 @endforeach
                             @endif
