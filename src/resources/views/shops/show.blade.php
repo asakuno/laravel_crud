@@ -65,6 +65,32 @@
                             @endif
                         @endauth
                     </div>
+                    @auth
+                        <div class="col-12 mt-2 mb-2 pb-2 border-b-2 border-gray-200">
+                            @if($shop->comments)
+                                @foreach($shop->comments as $comment)
+                                    <div class="mb-2 border-2 border-gray-200">
+                                        <span>{{ $comment->comment }}</span>
+                                        <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                            <button class="btn btn-outline btn-error" onclick='return confirm("削除してもよろしいですか？")'>削除</button>
+                                        </form>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="col-12 mt-2 mb-2 pb-2 border-b-2 border-gray-200">
+                            <form action="{{ route('comment.store', $shop->id) }}" method="POST">
+                                @csrf
+                                <input value="{{ $shop->id }}" type="hidden" name="shop_id" />
+                                <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
+                                <input class="form-control comment-input border-0" placeholder="コメント" autocomplete="off" type="text" name="comment" />
+                                <button class="btn btn-outline btn-success">送信</button>
+                            </form>
+                        </div>
+                    @endauth
                 </div>
             </div>
         </div>
