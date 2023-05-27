@@ -10,6 +10,9 @@ class CommentController extends Controller
 {
     public function store(Request $request)
     {
+        $request->validate([
+            'comment' => 'required|max:140',
+        ]);
         $comment = new Comment();
         $comment->comment = $request->comment;
         $comment->shop_id = $request->shop_id;

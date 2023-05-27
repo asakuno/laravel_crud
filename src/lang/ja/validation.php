@@ -127,7 +127,8 @@ return [
         'password' => 'パスワード',
         'shop->name' => '書店名',
         'address' => '住所',
-        'description' => '詳細'
+        'description' => '詳細',
+        'comment' => 'コメント'
     ],
 
 ];

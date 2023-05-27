@@ -87,6 +87,9 @@
                                 <input value="{{ $shop->id }}" type="hidden" name="shop_id" />
                                 <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
                                 <input class="form-control comment-input border-0" placeholder="コメント" autocomplete="off" type="text" name="comment" />
+                                @error('comment')
+                                    <span style="color:red;">{{ $message }}</span>
+                                @enderror
                                 <button class="btn btn-outline btn-success">送信</button>
                             </form>
                         </div>
