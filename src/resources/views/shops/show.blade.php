@@ -65,6 +65,57 @@
                             @endif
                         @endauth
                     </div>
+                    @auth
+                        <div class="col-12 mt-2 mb-2 pb-2 border-b-2 border-gray-200">
+                            <form action="{{ route('comment.store', $shop->id) }}" method="POST">
+                                @csrf
+                                <input value="{{ $shop->id }}" type="hidden" name="shop_id" />
+                                <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
+                                <div class="flex flex-col">
+                                <textarea class="w-full textarea textarea-secondary" placeholder="コメントを140文字以内で入力してください" autocomplete="off" type="text" name="comment"></textarea>
+                                @error('comment')
+                                    <span class="w-full mt-1" style="color:red;">{{ $message }}</span>
+                                @enderror
+                                </div>
+                                <div class="flex justify-end mt-2">
+                                    <button class="btn btn-outline btn-success">送信</button>
+                                </div>
+                            </form>
+                        </div>
+                    @endauth
+                    <div class="col-12 mt-2 mb-2 pb-2 border-b-2 border-gray-200">
+                        @if($shop->comments)
+                            @foreach($shop->comments as $comment)
+                                <div class="bg-white shadow rounded-lg p-4 my-3">
+                                    <div class="flex items-center mb-4">
+                                        <div class="ml-2">
+                                            <div class="h-4 w-24">
+                                                {{ $comment->user->name }}
+                                            </div>
+                                            <!--<div class="h-2 w-16 bg-gray-200 mt-1"></div> -->
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col space-y-2">
+                                        <div class="h-18 overflow-hidden">
+                                            <p class="text-sm">{{ $comment->comment }}</p>
+                                        </div>
+                                        <div class="flex justify-end">
+                                            @if(\Illuminate\Support\Facades\Auth::id() === $comment->user_id)
+                                                <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                                    <button onclick='return confirm("削除してもよろしいですか？")'>
+                                                        <i class="fas fa-trash-alt" style="color: #e00652;"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

@@ -123,9 +123,12 @@ return [
     ],
 
     'attributes' => [
-      'name' => '書店名',
-      'address' => '住所',
-      'description' => '詳細'
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'shop->name' => '書店名',
+        'address' => '住所',
+        'description' => '詳細',
+        'comment' => 'コメント'
     ],
 
 ];
