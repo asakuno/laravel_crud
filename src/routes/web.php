@@ -24,6 +24,8 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
+    Route::put('/profile/update', [ProfileController::class, 'profile_update'])->name('profile.profile_update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
