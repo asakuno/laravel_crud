@@ -4,7 +4,7 @@
     <div class="mx-5 my-5 bg-white" style="overflow-x: auto;">
         <div class="flex justify-center">
             <form action="{{ route('shops.index') }}" method="GET" id="searchForm">
-                <select name="prefecture" class="mb-1 select select-ghost w-full max-w-xs">
+                <select name="prefecture" class="mb-1 select select-ghost">
                 <option value="">選択</option>
                     <option value="北海道" {{ $prefecture === '北海道' ? 'selected' : '' }}>北海道</option>
                     <option value="青森県"{{ $prefecture === '青森県' ? 'selected' : '' }}>青森県</option>
