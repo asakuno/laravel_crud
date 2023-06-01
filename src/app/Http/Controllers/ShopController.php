@@ -28,7 +28,16 @@ class ShopController extends Controller
         
         $shops = $query->orderBy('created_at', 'DESC')->paginate(5);
 
-        return view('shops.index', compact('shops', 'keyword'))
+        $user = Auth::user();
+        $recommendedShop = null;
+
+        if ($user && $user->profile && $user->profile->current_address) {
+        $recommendedShop = Shop::where('address', 'LIKE', '%' . $user->profile->current_address . '%')
+            ->inRandomOrder()
+            ->first();
+        }
+
+        return view('shops.index', compact('shops', 'keyword', 'recommendedShop'))
             ->with('page_id',request()->page)
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

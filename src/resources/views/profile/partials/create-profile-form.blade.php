@@ -9,7 +9,7 @@
             @csrf
 
             <div>
-                <x-input-label for="current_address" :value="__('現住所')" />
+                <x-input-label for="current_address" :value="__('現在地')" />
                 <select id="current_address" name="current_address" class="mt-1 block w-full" required autocomplete="current-address">
                     <option value="">選択してください</option>
                     <option value="岩手県">北海道</option>
@@ -73,7 +73,7 @@
             @method('PUT')
 
             <div>
-                <x-input-label for="current_address" :value="__('現住所')" />
+                <x-input-label for="current_address" :value="__('現在地')" />
                 <select id="current_address" name="current_address" class="mt-1 block w-full" required autocomplete="current-address">
                     <option value="">選択</option>
                     <option value="北海道" {{ old('current_address', $user->profile->current_address) === '北海道' ? 'selected' : '' }}>北海道</option>
