@@ -16,6 +16,28 @@
                 <a href="{{ route('shop.create') }}" class="btn btn-outline btn-success mb-3">書店登録</a>
             @endauth
         </div>
+        @auth
+            <div class="flex justify-center">
+        <div class="sidebar w-48 -translate-x-full transform bg-white p-4 transition-transform duration-150 ease-in md:translate-x-0 md:shadow-md px-4 mb-2">
+            <div class="my-4 w-full border-b-4 border-indigo-100 text-center">
+                @if(Auth::user()->profile)
+                    <h2 class="mb-1">近くの書店</h2>
+                    @if ($recommendedShop)
+                        <p class="font-mono text-xl font-bold tracking-widest"><a href="{{ route('shop.show', $recommendedShop->id) }}">{{ $recommendedShop->name }}</a></p>
+                        <p class="font-mono text-xl font-semibold tracking-widest">{{ $recommendedShop->address }}</p>
+                    @else
+                        <p class="font-mono text-xl font-semibold tracking-widest">同じ県の書店はありませんでした…</p>
+                        <p class="font-mono text-xl font-semibold tracking-widest">一件目を<a href="{{ route('shop.create') }}" class="text-blue-500 underline">登録</a>してみませんか？</p>
+                    @endif
+                @else
+                    <p class="font-mono text-xl font-bold tracking-widest">レコメンド機能を使うには</p>
+                    <p class="font-mono text-xl font-semibold tracking-widest"><a href="{{ url('/profile') }}" class="text-blue-500 underline">現在地</a>を登録してください</p>
+                @endif
+            </div>
+            <div class="my-4"></div>
+        </div>
+    </div>
+        @endauth
         @foreach ($shops as $shop)
         <div class="flex justify-center">
             <div class="card w-96 bg-base-100 shadow-xl mb-3">

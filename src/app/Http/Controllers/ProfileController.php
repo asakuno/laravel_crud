@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Profile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,35 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            'profile' => $request->user()->profile,
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'current_address' => 'required',
+        ]);
+        
+        $profile = new Profile;
+        $profile->user_id = Auth::id();
+        $profile->current_address = $request->input('current_address');
+        $profile->save();
+
+        return Redirect::route('profile.edit')->with('status', '現住所を追加しました');
+    }
+
+    public function profile_update(Request $request)
+    {
+        $request->validate([
+            'current_address' => 'required',
+        ]);
+        
+        $profile = Auth::user()->profile;
+        $profile->current_address = $request->input('current_address');
+        $profile->save();
+
+        return Redirect::route('profile.edit')->with('status', '現住所を追加しました');
     }
 
     /**
