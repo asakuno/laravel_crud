@@ -19,11 +19,18 @@ class ShopController extends Controller
     public function index()
     {
         $keyword = request()->input('keyword');
+        $prefecture = request()->input('prefecture');
         $query = Shop::query();
 
         if(!empty($keyword)){
-            $query->where('name', 'LIKE', "%{$keyword}%")
-                ->orWhere('address', 'LIKE', "%{$keyword}%");
+            $query->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', "%{$keyword}%")
+                    ->orWhere('address', 'LIKE', "%{$keyword}%");
+            });
+        }
+
+        if (!empty($prefecture)) {
+            $query->where('address', 'LIKE', "%{$prefecture}%");
         }
         
         $shops = $query->orderBy('created_at', 'DESC')->paginate(5);
@@ -37,7 +44,7 @@ class ShopController extends Controller
             ->first();
         }
 
-        return view('shops.index', compact('shops', 'keyword', 'recommendedShop'))
+        return view('shops.index', compact('shops', 'keyword', 'recommendedShop', 'prefecture'))
             ->with('page_id',request()->page)
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
