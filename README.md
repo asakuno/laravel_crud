@@ -59,6 +59,11 @@ PHP/Laravelで下記の要件を満たしたオリジナルサイトを作成し
   - 書店削除機能
   - 写真投稿機能
 
+## 追加機能
+- ログイン後
+  - コメント機能
+  - レコメンド機能
+
 ## ER図
 <img width="714" alt="1625467fbc468e4ea99e8e8cd663fe42" src="https://github.com/asakuno/laravel_crud/assets/102037623/5764298d-7a92-4cb5-afcf-d5441ed70891">
 
