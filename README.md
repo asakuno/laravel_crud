@@ -1,6 +1,6 @@
 ## アルサーガさんの技術課題
 
-[サービスurl](http://ec2-35-78-98-150.ap-northeast-1.compute.amazonaws.com/)</br>
+[サービスurl](http://book-shop.site/)</br>
 email: guest@example.com</br>
 password: guest123</br>
 で簡単にゲストログインしていただけます。
