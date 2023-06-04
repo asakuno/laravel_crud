@@ -24,4 +24,9 @@ class Shop extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
 }
