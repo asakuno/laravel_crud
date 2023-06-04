@@ -28,8 +28,9 @@
                                 <label for="address">住所</label>
                                 <input type="text" value="{{ $shop->address }}" class="form-control" name="address" id="address" placeholder="住所を入力してください">
                                 @error('address')
-                                    <span style="color:red;">{{ $message }}</span>
+                                    <span style="color:red;">{{ $message }}</span><br>
                                 @enderror
+                                <span style="color:red;" name="validate-address" id="validate-address"></span>
                             </div>
                         </div>
                         <div id="map"></div>
@@ -71,8 +72,12 @@ function ChangeAddress() {
 
             document.getElementById("latitude").value = latitude;
             document.getElementById("longitude").value = longitude;
+            document.getElementById("validate-address").textContent = "";
         } else {
             alert('存在しない住所です ' + status); // 住所が存在しない場合
+            document.getElementById("validate-address").textContent = "存在する住所を入れてください。";
+            document.getElementById("latitude").value = "";
+            document.getElementById("longitude").value = "";
         }
     });
 }
