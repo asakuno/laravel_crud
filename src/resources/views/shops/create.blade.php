@@ -29,6 +29,7 @@
                             @error('address')
                                 <span style="color:red;">{{ $message }}</span>
                             @enderror
+                            <span style="color:red;" name="validate-address" id="validate-address"></span>
                         </div>
                     </div>
                     <div id="map"></div>
@@ -49,7 +50,7 @@
 
 
                     <div class="col-12 mt-2 mb-2">
-                        <button type="submit" class="btn btn-primary w-100">登録</button>
+                        <button type="submit" id="submit-btn" class="btn btn-primary w-100" disabled>登録</button>
                     </div>
                 </div>
             </form>
@@ -61,6 +62,7 @@ function ChangeAddress() {
     // geocoderを利用して位置情報を取得
     var geocoder = new google.maps.Geocoder();
     var address = document.getElementById("address").value;
+    var name = document.getElementById("name").value;
 
     geocoder.geocode({ 'address': address }, function(results, status) {
         // 住所が存在する場合
@@ -70,10 +72,18 @@ function ChangeAddress() {
 
             document.getElementById("latitude").value = latitude;
             document.getElementById("longitude").value = longitude;
+            document.getElementById("validate-address").textContent = "";
         } else {
             alert('存在しない住所です ' + status); // 住所が存在しない場合
+            document.getElementById("validate-address").textContent = "存在する住所を入れてください";
         }
     });
+
+    if (name && address && latitude && longitude) {
+        document.getElementById("submit-btn").disabled = false;
+    } else {
+        document.getElementById("submit-btn").disabled = true;
+    }
 }
 
 function initMap() {
