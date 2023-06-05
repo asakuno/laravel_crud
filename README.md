@@ -65,8 +65,9 @@ PHP/Laravelで下記の要件を満たしたオリジナルサイトを作成し
   - レコメンド機能
   - お気に入り機能
   - お気に入り一覧機能
-  - 現在地ボタン
   - 検索機能の拡大
+  - 現在地ボタン(https化できなかったのでローカルのみ)
+  [![Image from Gyazo](https://i.gyazo.com/db21c51c0cada2a65fd97b254ef0b073.gif)](https://gyazo.com/db21c51c0cada2a65fd97b254ef0b073)
 
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/d29b62f04b323676b36b2ceb7ced7266.png)](https://gyazo.com/d29b62f04b323676b36b2ceb7ced7266)

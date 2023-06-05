@@ -71,25 +71,25 @@
         </div>
         @auth
             <div class="flex justify-center">
-        <div class="sidebar w-48 -translate-x-full transform bg-white p-4 transition-transform duration-150 ease-in md:translate-x-0 md:shadow-md px-4 mb-2">
-            <div class="my-4 w-full border-b-4 border-indigo-100 text-center">
-                @if(Auth::user()->profile)
-                    <h2 class="mb-1">近くの書店</h2>
-                    @if ($recommendedShop)
-                        <p class="font-mono text-xl font-bold tracking-widest"><a href="{{ route('shop.show', $recommendedShop->id) }}">{{ $recommendedShop->name }}</a></p>
-                        <p class="font-mono text-xl font-semibold tracking-widest">{{ $recommendedShop->address }}</p>
-                    @else
-                        <p class="font-mono text-xl font-semibold tracking-widest">同じ県の書店はありませんでした…</p>
-                        <p class="font-mono text-xl font-semibold tracking-widest">一件目を<a href="{{ route('shop.create') }}" class="text-blue-500 underline">登録</a>してみませんか？</p>
-                    @endif
-                @else
-                    <p class="font-mono text-xl font-bold tracking-widest">レコメンド機能を使うには</p>
-                    <p class="font-mono text-xl font-semibold tracking-widest"><a href="{{ url('/profile') }}" class="text-blue-500 underline">現在地</a>を登録してください</p>
-                @endif
+                <div class="sidebar w-48 -translate-x-full transform bg-white p-4 transition-transform duration-150 ease-in md:translate-x-0 md:shadow-md px-4 mb-2">
+                    <div class="my-4 w-full border-b-4 border-indigo-100 text-center">
+                        @if(Auth::user()->profile)
+                            <h2 class="mb-1">近くの書店</h2>
+                            @if ($recommendedShop)
+                                <p class="font-mono text-xl font-bold tracking-widest"><a href="{{ route('shop.show', $recommendedShop->id) }}">{{ $recommendedShop->name }}</a></p>
+                                <p class="font-mono text-xl font-semibold tracking-widest">{{ $recommendedShop->address }}</p>
+                            @else
+                                <p class="font-mono text-xl font-semibold tracking-widest">同じ県の書店はありませんでした…</p>
+                                <p class="font-mono text-xl font-semibold tracking-widest">一件目を<a href="{{ route('shop.create') }}" class="text-blue-500 underline">登録</a>してみませんか？</p>
+                            @endif
+                        @else
+                            <p class="font-mono text-xl font-bold tracking-widest">レコメンド機能を使うには</p>
+                            <p class="font-mono text-xl font-semibold tracking-widest"><a href="{{ url('/profile') }}" class="text-blue-500 underline">現在地</a>を登録してください</p>
+                        @endif
+                    </div>
+                    <div class="my-4"></div>
+                </div>
             </div>
-            <div class="my-4"></div>
-        </div>
-    </div>
         @endauth
         @foreach ($shops as $shop)
         <div class="flex justify-center">
@@ -102,32 +102,34 @@
                     </h2>
                     <p class="mb-2">{{ $shop->address }}</p>
                     <p class="font-medium italic">{{ $shop->user->name }}</p>
-                    <div class="card-actions justify-end">
-                    @if(\Illuminate\Support\Facades\Auth::id() !== $shop->user_id)
-                        @if (!\Illuminate\Support\Facades\Auth::user()->is_favorite($shop->id))
-                        <form action="{{ route('favorite.store', $shop) }}" method="post">
-                            @csrf
-                            <button><i class="fa-regular fa-heart" style="color: #f33f7e; font-size: 1.5em;"></i></button>
-                        </form>
-                        @else
-                        <form action="{{ route('favorite.destroy', $shop) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button><i class="fa-solid fa-heart" style="color: #f33f7e; font-size: 1.5em;"></i></button>
-                        </form>
-                        @endif
-                    @endif
-                    </div>
-                    <div class="card-actions justify-end">
-                        @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
-                            <a class="btn btn-outline btn-primary" href="{{ route('shop.edit', $shop->id) }}?page_id={{ $page_id }}">編集</a>
-                            <form action="{{ route('shop.destroy', $shop->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-outline btn-error" onclick='return confirm("削除してもよろしいですか？")'>削除</button>
-                            </form>
-                        @endif
-                    </div>
+                    @auth
+                        <div class="card-actions justify-end">
+                            @if(\Illuminate\Support\Facades\Auth::id() !== $shop->user_id)
+                                @if (!\Illuminate\Support\Facades\Auth::user()->is_favorite($shop->id))
+                                <form action="{{ route('favorite.store', $shop) }}" method="post">
+                                    @csrf
+                                    <button><i class="fa-regular fa-heart" style="color: #f33f7e; font-size: 1.5em;"></i></button>
+                                </form>
+                                @else
+                                <form action="{{ route('favorite.destroy', $shop) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button><i class="fa-solid fa-heart" style="color: #f33f7e; font-size: 1.5em;"></i></button>
+                                </form>
+                                @endif
+                            @endif
+                        </div>
+                        <div class="card-actions justify-end">
+                            @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
+                                <a class="btn btn-outline btn-primary" href="{{ route('shop.edit', $shop->id) }}?page_id={{ $page_id }}">編集</a>
+                                <form action="{{ route('shop.destroy', $shop->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-outline btn-error" onclick='return confirm("削除してもよろしいですか？")'>削除</button>
+                                </form>
+                            @endif
+                        </div>
+                    @endauth
                 </div>
             </div> 
         </div>       
