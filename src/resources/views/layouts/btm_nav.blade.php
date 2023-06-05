@@ -11,4 +11,8 @@
         <i class="fa-solid fa-book"></i>
         <span class="btm-nav-label">書店登録</span>
     </a>
+    <a href="{{ route('favorites') }}" class="bg-orange-200 hover:bg-orange-300">
+        <i class="fa-solid fa-heart"></i>
+        <span class="btm-nav-label">お気に入り一覧</span>
+    </a>
 </div>

@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/shops/edit/{shop}', [ShopController::class, 'edit'])->name('shop.edit');
     Route::put('/shops/update/{shop}', [ShopController::class, 'update'])->name('shop.update');
     Route::delete('/shops/{shop}', [ShopController::class, 'destroy'])->name('shop.destroy');
+    Route::get('shops/favorites', [ShopController::class, 'favorite_shops'])->name('favorites');
     Route::post('shops/{shop}/comments', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::post('shops/{shop}/favorite', [FavoriteController::class, 'store'])->name('favorite.store');

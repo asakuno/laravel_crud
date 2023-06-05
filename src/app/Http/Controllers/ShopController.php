@@ -157,4 +157,13 @@ class ShopController extends Controller
         $shops = Shop::with('user')->get();
         return view('shops.map', compact('shops'));
     }
+
+    public function favorite_shops()
+    {
+        $user = Auth::user();
+        $shops = $user->favorite_shops()->orderBy('created_at', 'DESC')->paginate(5);
+
+
+        return view('shops.favorites', compact('shops'));
+    }
 }
