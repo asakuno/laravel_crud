@@ -103,6 +103,7 @@
                     <p class="mb-2">{{ $shop->address }}</p>
                     <p class="font-medium italic">{{ $shop->user->name }}</p>
                     <div class="article-control">
+                    @if(\Illuminate\Support\Facades\Auth::id() !== $shop->user_id)
                         @if (!\Illuminate\Support\Facades\Auth::user()->is_favorite($shop->id))
                         <form action="{{ route('favorite.store', $shop) }}" method="post">
                             @csrf
@@ -115,6 +116,7 @@
                             <button>お気に入り解除</button>
                         </form>
                         @endif
+                    @endif
                     </div>
                     <div class="card-actions justify-end">
                         @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
