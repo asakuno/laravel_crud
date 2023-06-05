@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/shops/{shop}', [ShopController::class, 'destroy'])->name('shop.destroy');
     Route::post('shops/{shop}/comments', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::get('shops/favorite/{id}', [FavoriteController::class, 'store'])->name('favorite.store');
+    Route::delete('shops/favorite/{id}', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 });
 Route::middleware('auth')->group(function () {
     Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
