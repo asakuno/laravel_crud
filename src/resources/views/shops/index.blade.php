@@ -54,7 +54,7 @@
                     <option value="鹿児島県" {{ $prefecture === '鹿児島県' ? 'selected' : '' }}>鹿児島県</option>
                     <option value="沖縄県" {{ $prefecture === '沖縄県' ? 'selected' : '' }}>沖縄県</option>
                 </select>
-                <input type="text" name="keyword" value="{{ $keyword }}" placeholder="書店名か住所で検索" class="input input-bordered bg-gray-100" />
+                <input type="text" name="keyword" value="{{ $keyword }}" placeholder="書店名で検索" class="input input-bordered bg-gray-100" />
                 <button type="submit" value="検索" class="btn btn-outline btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 </button>
