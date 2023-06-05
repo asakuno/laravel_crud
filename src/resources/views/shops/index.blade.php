@@ -102,6 +102,20 @@
                     </h2>
                     <p class="mb-2">{{ $shop->address }}</p>
                     <p class="font-medium italic">{{ $shop->user->name }}</p>
+                    <div class="article-control">
+                        @if (!\Illuminate\Support\Facades\Auth::user()->is_favorite($shop->id))
+                        <form action="{{ route('favorite.store', $shop) }}" method="post">
+                            @csrf
+                            <button>お気に入り登録</button>
+                        </form>
+                        @else
+                        <form action="{{ route('favorite.destroy', $shop) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button>お気に入り解除</button>
+                        </form>
+                        @endif
+                    </div>
                     <div class="card-actions justify-end">
                         @if(\Illuminate\Support\Facades\Auth::id() === $shop->user_id)
                             <a class="btn btn-outline btn-primary" href="{{ route('shop.edit', $shop->id) }}?page_id={{ $page_id }}">編集</a>

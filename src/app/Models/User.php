@@ -66,4 +66,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Favorite::class);
     }
+
+    public function favorite_shops()
+    {
+        return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
+    }
+
+    public function is_favorite($ShopId)
+    {
+        return $this->favorites()->where('shop_id', $ShopId)->exists();
+    }
 }

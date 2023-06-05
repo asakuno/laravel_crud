@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('shop_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('shop_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unique(['shop_id', 'user_id']);
             $table->timestamps();
         });
     }
