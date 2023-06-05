@@ -102,18 +102,18 @@
                     </h2>
                     <p class="mb-2">{{ $shop->address }}</p>
                     <p class="font-medium italic">{{ $shop->user->name }}</p>
-                    <div class="article-control">
+                    <div class="card-actions justify-end">
                     @if(\Illuminate\Support\Facades\Auth::id() !== $shop->user_id)
                         @if (!\Illuminate\Support\Facades\Auth::user()->is_favorite($shop->id))
                         <form action="{{ route('favorite.store', $shop) }}" method="post">
                             @csrf
-                            <button><i class="far fa-heart"></i></button>
+                            <button><i class="fa-regular fa-heart" style="color: #f33f7e; font-size: 1.5em;"></i></i></button>
                         </form>
                         @else
                         <form action="{{ route('favorite.destroy', $shop) }}" method="post">
                             @csrf
                             @method('delete')
-                            <button><i class="fas fa-heart"></i></button>
+                            <button><i class="fa-solid fa-heart" style="color: #f33f7e; font-size: 1.5em;"></i></button>
                         </form>
                         @endif
                     @endif

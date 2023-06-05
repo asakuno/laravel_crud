@@ -34,7 +34,7 @@ class ProfileController extends Controller
         $profile->current_address = $request->input('current_address');
         $profile->save();
 
-        return Redirect::route('profile.edit')->with('status', '現住所を追加しました');
+        return Redirect::route('profile.edit')->with('success', '現在地を追加しました');
     }
 
     public function profile_update(Request $request)
@@ -47,7 +47,7 @@ class ProfileController extends Controller
         $profile->current_address = $request->input('current_address');
         $profile->save();
 
-        return Redirect::route('profile.edit')->with('status', '現住所を追加しました');
+        return Redirect::route('profile.edit')->with('success', '現在地を変更しました');
     }
 
     /**
@@ -63,7 +63,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'プロフィールを更新しました');
     }
 
     /**
