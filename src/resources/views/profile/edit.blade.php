@@ -1,4 +1,4 @@
-@extends('tops.app')
+@extends('shops.app')
 
 @section('content')
 <x-app-layout>
