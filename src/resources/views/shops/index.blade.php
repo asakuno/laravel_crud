@@ -107,13 +107,13 @@
                         @if (!\Illuminate\Support\Facades\Auth::user()->is_favorite($shop->id))
                         <form action="{{ route('favorite.store', $shop) }}" method="post">
                             @csrf
-                            <button>お気に入り登録</button>
+                            <button><i class="far fa-heart"></i></button>
                         </form>
                         @else
                         <form action="{{ route('favorite.destroy', $shop) }}" method="post">
                             @csrf
                             @method('delete')
-                            <button>お気に入り解除</button>
+                            <button><i class="fas fa-heart"></i></button>
                         </form>
                         @endif
                     @endif
