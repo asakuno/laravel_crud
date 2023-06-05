@@ -63,10 +63,14 @@ PHP/Laravelで下記の要件を満たしたオリジナルサイトを作成し
 - ログイン後
   - コメント機能
   - レコメンド機能
+  - お気に入り機能
+  - お気に入り一覧機能
+  - 現在地ボタン
+  - 検索機能の拡大
 
 ## ER図
-<img width="714" alt="1625467fbc468e4ea99e8e8cd663fe42" src="https://github.com/asakuno/laravel_crud/assets/102037623/5764298d-7a92-4cb5-afcf-d5441ed70891">
+[![Image from Gyazo](https://i.gyazo.com/d29b62f04b323676b36b2ceb7ced7266.png)](https://gyazo.com/d29b62f04b323676b36b2ceb7ced7266)
 
 ## インフラ構成
-<img width="834" alt="ab37b44c53cc6ce08f25b84404cbabdf" src="https://github.com/asakuno/laravel_crud/assets/102037623/8c7969f4-bf7b-46bc-bbf1-fd59f85ac89b">
+![名称未設定ファイル drawio](https://github.com/asakuno/laravel_crud/assets/102037623/8d730a5a-8f50-4fcf-8fed-de041b389353)
 
