@@ -69,11 +69,13 @@ class User extends Authenticatable
 
     public function favorite_shops()
     {
+        //お気に入りコレクションの定義
         return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
     }
 
     public function is_favorite($ShopId)
     {
+        //お気に入りしているかの判定
         return $this->favorites()->where('shop_id', $ShopId)->exists();
     }
 }

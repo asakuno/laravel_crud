@@ -30,6 +30,7 @@ class ImageUploadController extends Controller
         ]);
 
         $shop = Shop::find($request->input('shop_id'));
+        //自分の投稿と違う場合、403エラーを返す
         if (!$shopService->checkOwnShop(Auth::user()->id, $shop->id)) {
             throw new AccessDeniedHttpException();
         }
@@ -45,7 +46,7 @@ class ImageUploadController extends Controller
         $image->save();
 
         return back()
-            ->with('success', 'You have successfully uploaded the image.')
+            ->with('success', '画像の投稿に成功しました')
             ->with('image', $imagePath);
     }
 

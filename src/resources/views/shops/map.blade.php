@@ -30,6 +30,7 @@
     const infoWindow = []
     const spotData = @json($shops);
 
+    //マップの作成
     window.initMap = () => {
         defaultLocation = new window.google.maps.LatLng(35.6803997, 139.7690174)
 
@@ -49,6 +50,7 @@
         locationButton.classList.add('custom-map-control-button')
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
+        //現在地ボタンを押したときの遷移
         locationButton.addEventListener('click', () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position) => {
@@ -83,6 +85,7 @@
 
         geocoder = new window.google.maps.Geocoder()
 
+        //検索機能
         document.getElementById('search').addEventListener('click', function (event) {
             event.preventDefault();
 
@@ -103,6 +106,7 @@
         })
     }
 
+    //現在地のピン
     function setCurrentLocation(setPlace) {
         markerCurrentLocation = new window.google.maps.Marker({
             position: setPlace,
@@ -125,6 +129,7 @@
     }
 
 
+    //shopsのマーカーを作成
     function createMarker() {
       for (let i = 0; i < spotData.length; i++) {
         let id = spotData[i]['id']

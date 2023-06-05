@@ -28,6 +28,7 @@ class CommentController extends Controller
     {
         $comment = Comment::find($request->comment_id);
 
+        //コメント作成者が違う場合403エラーを返す
         if (!$CommentService->checkOwnComment(Auth::user()->id, $comment->id)) {
             throw new AccessDeniedHttpException();
         }

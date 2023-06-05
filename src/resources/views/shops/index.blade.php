@@ -107,7 +107,7 @@
                         @if (!\Illuminate\Support\Facades\Auth::user()->is_favorite($shop->id))
                         <form action="{{ route('favorite.store', $shop) }}" method="post">
                             @csrf
-                            <button><i class="fa-regular fa-heart" style="color: #f33f7e; font-size: 1.5em;"></i></i></button>
+                            <button><i class="fa-regular fa-heart" style="color: #f33f7e; font-size: 1.5em;"></i></button>
                         </form>
                         @else
                         <form action="{{ route('favorite.destroy', $shop) }}" method="post">

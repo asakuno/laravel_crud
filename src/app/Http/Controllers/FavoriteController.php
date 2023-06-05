@@ -13,13 +13,14 @@ class FavoriteController extends Controller
 {
     public function store(Shop $shop, ShopService $shopService)
     {
+        //書店作成者が同じ場合403エラーを返す
         if ($shopService->checkOwnShop(Auth::user()->id, $shop->id)) {
             throw new AccessDeniedHttpException();
         }
 
         $user = Auth::user();
         if (!$user->is_favorite($shop->id)) {
-            $user->favorite_shops()->attach($shop->id);
+            $user->favorite_shops()->attach($shop->id);//favorite_shopsコレクションに追加
         }
 
         return redirect()->back();
@@ -27,13 +28,14 @@ class FavoriteController extends Controller
 
     public function destroy(Shop $shop, ShopService $shopService)
     {
+        //書店作成者が違う場合403エラーを返す
         if ($shopService->checkOwnShop(Auth::user()->id, $shop->id)) {
             throw new AccessDeniedHttpException();
         }
         
         $user = Auth::user();
         if ($user->is_favorite($shop->id)) {
-            $user->favorite_shops()->detach($shop->id);
+            $user->favorite_shops()->detach($shop->id);//favorite_shopsコレクションから削除
         }
 
         return redirect()->back();
