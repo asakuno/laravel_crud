@@ -20,15 +20,9 @@ class ShopController extends Controller
     {
         $keyword = request()->input('keyword');
         $prefecture = request()->input('prefecture');
-        $query = Shop::query();
 
-        if(!empty($keyword)){
-            $query->where(function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('address', 'LIKE', "%{$keyword}%");
-            });
-        }
-
+        $query = Shop::latest()->search($keyword);
+        
         if (!empty($prefecture)) {
             $query->where('address', 'LIKE', "%{$prefecture}%");
         }
